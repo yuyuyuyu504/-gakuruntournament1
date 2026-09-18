@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head><title>Nav Test</title>
+<style>
+.view-section { display: none; padding: 40px; font-size: 24px; }
+.view-section.active { display: block; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#home" class="nav-link">HOME</a> |
+  <a href="#teams" class="nav-link">TEAMS</a> |
+  <a href="#ranking" class="nav-link">RANKING</a>
+</nav>
+<div id="status" style="padding:20px; background:#f0f0f0; margin: 20px 0;"></div>
+<section id="view-home" class="view-section active">HOME PAGE CONTENT</section>
+<section id="view-teams" class="view-section">TEAMS PAGE CONTENT</section>
+<section id="view-ranking" class="view-section">RANKING PAGE CONTENT</section>
+
+<script>
+const status = document.getElementById('status');
+
+function log(msg) {
+  status.innerHTML += '<br>' + msg;
+  console.log(msg);
+}
+
+log('Script loaded OK');
+
+function showView(id) {
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) {
+    el.classList.add('active');
+    log('Showing: ' + id);
+  } else {
+    log('ERROR: cannot find #' + id);
+  }
+}
+
+function handleRoute() {
+  const hash = window.location.hash || '#home';
+  log('Hash: ' + hash);
+  switch(hash) {
+    case '#home': showView('view-home'); break;
+    case '#teams': showView('view-teams'); break;
+    case '#ranking': showView('view-ranking'); break;
+    default: showView('view-home');
+  }
+}
+
+window.addEventListener('hashchange', handleRoute);
+handleRoute();
+
+log('Router initialized');
+</script>
+</body>
+</html>

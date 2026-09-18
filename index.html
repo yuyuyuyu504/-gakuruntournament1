@@ -1,0 +1,2018 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>King of Gakuran - 15 vs 15 Tournament</title>
+  <meta name="description" content="The ultimate King of Gakuran 15 vs 15 community tournament. Compete. Survive. Become the King.">
+  <link rel="stylesheet" href="style.css">
+  <!-- โหลดตัวช่วย Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // เชื่อมต่อฐานข้อมูลกลาง
+  const SUPABASE_URL = 'https://qqrajzrsmzssmoxuxsfc.supabase.co/';
+  const SUPABASE_ANON_KEY = 'sb_publishable_Hc-sej3m75aMMBjhZ43U1Q_GGDlN5AN';
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
+</head>
+<body>
+
+  <!-- Site Header matching mockups -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo-link">
+        <div class="logo-icon"></div>
+        <span>KING OF GAKURAN</span>
+      </a>
+
+       <nav>
+         <ul class="nav-menu">
+           <li><a href="#home" class="nav-link active">HOME</a></li>
+           <li><a href="#match-control" class="nav-link">MATCH CONTROL</a></li>
+           <li><a href="#tournament" class="nav-link">TOURNAMENT</a></li>
+           <li><a href="#playoff" class="nav-link">PLAYOFF</a></li>
+           <li><a href="#teams" class="nav-link">TEAMS</a></li>
+           <li><a href="#compare" class="nav-link">COMPARE</a></li>
+           <li><a href="#players" class="nav-link">PLAYERS</a></li>
+           <li><a href="#matches" class="nav-link">MATCHES</a></li>
+           <li><a href="#ranking" class="nav-link">RANKING</a></li>
+           <li><a href="#rules" class="nav-link">RULES</a></li>
+           <li><a href="#admin" class="nav-link" id="admin-nav-link">ADMIN</a></li>
+         </ul>
+       </nav>
+
+       <div style="display: flex; align-items: center; gap: 10px;">
+         <a href="#server-owner" class="btn btn-outline" style="font-size: 0.75rem; padding: 8px 14px; border-color: var(--color-brand); color: var(--color-brand);">👑 SERVER OWNER</a>
+         <a href="#register" class="btn btn-primary" style="font-size: 0.75rem; padding: 8px 14px;">REGISTER TEAM</a>
+         <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+           <span></span>
+           <span></span>
+           <span></span>
+         </button>
+       </div>
+     </div>
+   </header>
+
+  <main id="app-main">
+
+    <!-- ==========================================================================
+         VIEW: HOME (1.png)
+         ========================================================================== -->
+    <section id="view-home" class="view-section active">
+      <!-- Hero Section -->
+      <div class="home-hero">
+        <div class="container home-hero-grid">
+          <div class="home-hero-content">
+            <div class="section-tag">KING OF GAKURAN</div>
+            <h1 class="home-hero-title">KING OF GAKURAN</h1>
+            <div class="badge-tagline">15 VS 15 TOURNAMENT</div>
+            <p class="home-hero-sub">The ultimate Gakuran community tournament.</p>
+            <div class="home-hero-motto">COMPETE. SURVIVE. BECOME THE KING.</div>
+
+            <div class="hero-actions">
+              <a href="#register" class="btn btn-primary">REGISTER TEAM</a>
+              <a href="#tournament" class="btn btn-outline">VIEW TOURNAMENT</a>
+            </div>
+          </div>
+
+          <div class="hero-image-wrapper">
+            <div class="floating-petal" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
+            <div class="floating-petal" style="top: 40%; right: 5%; animation-delay: 2.5s;"></div>
+            <div class="floating-petal" style="bottom: 20%; left: 20%; animation-delay: 4.8s;"></div>
+
+            <div class="hero-image-card">
+              <img src="assets/hero-sakura.png" alt="Gakuran League Sakura 2026">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overview 4 Feature Cards -->
+      <div class="overview-section">
+        <div class="container">
+          <div class="overview-header">
+            <div>
+              <span class="section-tag">TOURNAMENT OVERVIEW</span>
+              <h2 class="section-title">ENTER THE SCHOOL OF CHAMPIONS</h2>
+            </div>
+            <p class="section-subtitle" style="text-align: right;">
+              A focused community format built for teams who are ready to earn their crown.
+            </p>
+          </div>
+
+          <div class="overview-cards-grid">
+            <div class="feature-card">
+              <div class="feature-card-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M19 13l2 2-5 5-2-2"></path></svg>
+              </div>
+              <div class="feature-card-label">FORMAT</div>
+              <div class="feature-card-val">15 VS 15</div>
+              <div class="feature-card-desc">One team. One shared objective.</div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34M7.4 4h9.2c.4 0 .7.3.8.7l.8 5.6c.4 2.8-1.5 5.4-4.3 5.7h-.4c-2.8 0-5.1-2.3-5.5-5.1L7.2 4.7c-.1-.4.2-.7.6-.7z"></path></svg>
+              </div>
+              <div class="feature-card-label">MATCH</div>
+              <div class="feature-card-val">BEST OF 3</div>
+              <div class="feature-card-desc">Win two rounds to claim the match.</div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="feature-card-label">ROSTER</div>
+              <div class="feature-card-val">15 + 5 SUBS</div>
+              <div class="feature-card-desc">Build depth for every battle.</div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="6" y1="12" x2="18" y2="12"></line></svg>
+              </div>
+              <div class="feature-card-label">ENTRY FEE</div>
+              <div class="feature-card-val">20 THB / PLAYER</div>
+              <div class="feature-card-desc">A simple entry for serious contenders.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How The Tournament Works (3 Steps) -->
+      <div class="how-it-works-section">
+        <div class="container">
+          <div class="center-header">
+            <span class="section-tag">MATCH FORMAT</span>
+            <h2 class="section-title">HOW THE TOURNAMENT WORKS</h2>
+            <p class="section-subtitle" style="margin: 0 auto;">Three rounds. One winner.</p>
+          </div>
+
+          <div class="steps-row">
+            <div class="step-card">
+              <div class="step-card-num">ROUND 01</div>
+              <div class="step-card-title">1 VS 1</div>
+              <div class="step-card-desc">PLAYERS FIGHT ONE BY ONE.</div>
+            </div>
+
+            <div class="step-arrow">→</div>
+
+            <div class="step-card">
+              <div class="step-card-num">ROUND 02</div>
+              <div class="step-card-title">1 VS 1</div>
+              <div class="step-card-desc">THE SURVIVING TEAM CONTINUES.</div>
+            </div>
+
+            <div class="step-arrow">→</div>
+
+            <div class="step-card highlight-pink">
+              <div class="step-card-num">ROUND 03</div>
+              <div class="step-card-title">15 VS 15</div>
+              <div class="step-card-desc">ALL 15 STARTING PLAYERS ENTER.</div>
+            </div>
+          </div>
+
+          <a href="#tournament" class="btn btn-outline" style="padding: 12px 36px;">VIEW FULL RULES</a>
+        </div>
+      </div>
+
+      <!-- CTA Dark Banner -->
+      <div class="cta-banner-dark">
+        <div class="container">
+          <div class="cta-content">
+            <h2 class="cta-title">READY TO ENTER THE BATTLE?</h2>
+            <p class="cta-desc">Register your team and secure your place in King of Gakuran.</p>
+            <a href="#register" class="btn btn-light-pill">REGISTER YOUR TEAM</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: TOURNAMENT FORMAT (2.png)
+         ========================================================================== -->
+    <section id="view-tournament" class="view-section">
+      <!-- Tournament Hero -->
+      <div class="tournament-hero-section">
+        <div class="container tournament-hero-grid">
+          <div>
+            <span class="section-tag">TOURNAMENT</span>
+            <h1 class="section-title" style="font-size: 2.75rem;">TOURNAMENT FORMAT</h1>
+            <div class="badge-tagline" style="margin-bottom: 8px;">KING OF GAKURAN · 15 VS 15</div>
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--color-brand); margin-bottom: 12px;">Three rounds. One winner.</div>
+            <p style="color: var(--color-text-secondary); line-height: 1.7; font-size: 0.95rem;">
+              King of Gakuran is a Best of 3 team tournament featuring two 1 VS 1 Survival rounds followed by a decisive 15 VS 15 battle.
+            </p>
+          </div>
+          <div class="tournament-photo-box">
+            <img src="assets/hero-cars-clean.png" alt="15 One Team - One Objective">
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats Bar -->
+      <div class="stats-bar-grid">
+        <div class="container" style="display: contents;">
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">FORMAT</div>
+            <div class="stat-bar-value">15 VS 15</div>
+            <div class="stat-bar-sub">ONE TEAM. ONE SHARED OBJECTIVE.</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">MATCH</div>
+            <div class="stat-bar-value">BEST OF 3</div>
+            <div class="stat-bar-sub">FIRST TEAM TO WIN 2 ROUNDS.</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">ROSTER</div>
+            <div class="stat-bar-value">15 + 5 SUBS</div>
+            <div class="stat-bar-sub">15 STARTERS + UP TO 5 SUBSTITUTES.</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">ENTRY FEE</div>
+            <div class="stat-bar-value">20 THB / PLAYER</div>
+            <div class="stat-bar-sub">REGISTRATION FEE PER PLAYER.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How Match Works 3 Rounds -->
+      <div class="container" style="padding-top: 56px; padding-bottom: 56px;">
+        <span class="section-tag">MATCH FORMAT</span>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px;">
+          <h2 class="section-title" style="margin-bottom: 0;">HOW THE MATCH WORKS</h2>
+          <span style="font-size: 0.85rem; font-weight: 800; letter-spacing: 0.08em; color: var(--color-brand); text-transform: uppercase;">
+            THREE ROUNDS. ONE WINNER.
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 20px;">
+          <div class="step-card" style="min-height: 240px;">
+            <div>
+              <div class="step-card-num">ROUND 01</div>
+              <h3 style="font-size: 1.25rem; font-weight: 900; margin-bottom: 12px;">1 VS 1 SURVIVAL</h3>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.6;">
+                Players fight one by one. The winner remains in the arena while the loser leaves. The next teammate then enters.
+              </p>
+            </div>
+            <div style="font-size: 0.72rem; font-weight: 800; color: var(--color-brand); margin-top: 24px;">1 VS 1</div>
+          </div>
+
+          <div class="step-card" style="min-height: 240px;">
+            <div>
+              <div class="step-card-num">ROUND 02</div>
+              <h3 style="font-size: 1.25rem; font-weight: 900; margin-bottom: 12px;">1 VS 1 SURVIVAL</h3>
+              <p style="font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.6;">
+                Players fight one by one. The winner remains in the arena while the loser leaves. The next teammate then enters. The round continues until one team has no players remaining.
+              </p>
+            </div>
+            <div style="font-size: 0.72rem; font-weight: 800; color: var(--color-brand); margin-top: 24px;">1 VS 1</div>
+          </div>
+
+          <div class="step-card highlight-pink" style="min-height: 240px;">
+            <div>
+              <div class="step-card-num">ROUND 03</div>
+              <h3 style="font-size: 1.25rem; font-weight: 900; margin-bottom: 12px;">15 VS 15</h3>
+              <p style="font-size: 0.85rem; line-height: 1.6;">
+                All 15 starting players from both teams enter the battle. Eliminated players leave the match. The team that eliminates all opponents wins the round.
+              </p>
+            </div>
+            <div style="font-size: 0.72rem; font-weight: 900; margin-top: 24px; color: #780520;">THE DECISIVE BATTLE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to Win First to 2 Rounds (Dark Banner) -->
+      <div class="how-to-win-bar">
+        <div class="container how-to-win-inner">
+          <div>
+            <div style="font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; color: var(--color-brand); text-transform: uppercase; margin-bottom: 6px;">HOW TO WIN THE MATCH</div>
+            <h3 style="font-size: 1.8rem; font-weight: 900; text-transform: uppercase;">FIRST TO 2 ROUNDS</h3>
+            <p style="color: var(--color-text-light-muted); font-size: 0.85rem;">The match is decided by the first team to win 2 rounds.</p>
+          </div>
+
+          <div class="rounds-timeline">
+            <span class="timeline-step">ROUND 01</span>
+            <span style="color: var(--color-brand);">→</span>
+            <span class="timeline-step">ROUND 02</span>
+            <span style="color: var(--color-brand);">→</span>
+            <span class="timeline-step">ROUND 03</span>
+            <div class="timeline-line"></div>
+            <span class="timeline-summary">First team to win 2 rounds wins the match.</span>
+          </div>
+
+          <div class="notice-pink-box">
+            If a team wins Round 01 and Round 02 consecutively, Round 03 will not be played.
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Roster Spec & Entry Fee -->
+      <div class="container" style="padding-top: 56px; padding-bottom: 56px;">
+        <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: center; margin-bottom: 64px;">
+          <div>
+            <span class="section-tag">TEAM ROSTER</span>
+            <h2 class="section-title">BUILD YOUR TEAM</h2>
+            <p class="section-subtitle">Each server can send one team.</p>
+          </div>
+
+          <div class="roster-specs-box">
+            <h4 style="font-size: 0.95rem; font-weight: 900; text-transform: uppercase; margin-bottom: 16px;">
+              15 STARTERS <span style="color: var(--color-brand);">+</span> UP TO 5 SUBSTITUTES
+            </h4>
+
+            <div style="margin-bottom: 18px;">
+              <div style="font-size: 0.7rem; font-weight: 800; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 8px;">
+                PLAYER SLOTS · STARTERS
+              </div>
+              <div class="slot-badges-row">
+                <span class="slot-badge">01</span><span class="slot-badge">02</span><span class="slot-badge">03</span><span class="slot-badge">04</span><span class="slot-badge">05</span>
+                <span class="slot-badge">06</span><span class="slot-badge">07</span><span class="slot-badge">08</span><span class="slot-badge">09</span><span class="slot-badge">10</span>
+                <span class="slot-badge">11</span><span class="slot-badge">12</span><span class="slot-badge">13</span><span class="slot-badge">14</span><span class="slot-badge">15</span>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size: 0.7rem; font-weight: 800; color: var(--color-brand); text-transform: uppercase; margin-bottom: 8px;">
+                SUBSTITUTES
+              </div>
+              <div class="slot-badges-row">
+                <span class="slot-badge" style="border-color: #FFD2DF; color: var(--color-brand);">01</span>
+                <span class="slot-badge" style="border-color: #FFD2DF; color: var(--color-brand);">02</span>
+                <span class="slot-badge" style="border-color: #FFD2DF; color: var(--color-brand);">03</span>
+                <span class="slot-badge" style="border-color: #FFD2DF; color: var(--color-brand);">04</span>
+                <span class="slot-badge" style="border-color: #FFD2DF; color: var(--color-brand);">05</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entry Fee Cards -->
+        <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: center; margin-bottom: 56px;">
+          <div>
+            <span class="section-tag">REGISTRATION</span>
+            <h2 class="section-title">ENTRY FEE</h2>
+            <p class="section-subtitle">Registration fee is 20 THB per player.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div style="background: var(--color-bg-dark); color: #fff; padding: 24px; border-radius: var(--radius-sm); text-align: center;">
+              <div style="font-size: 1.4rem; font-weight: 900; margin-bottom: 4px;">20 THB</div>
+              <div style="font-size: 0.72rem; color: #9CA3AF; text-transform: uppercase; font-weight: 700;">/ PLAYER</div>
+            </div>
+
+            <div style="background: #FAFAFA; border: 1px solid var(--color-border-light); padding: 24px; border-radius: var(--radius-sm); text-align: center;">
+              <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 6px;">15 STARTERS</div>
+              <div style="font-size: 1.1rem; font-weight: 900;">300 THB / TEAM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Important Rules (5 Cards) -->
+        <div style="margin-bottom: 56px;">
+          <span class="section-tag">IMPORTANT RULES</span>
+          <h2 class="section-title">COMPETE WITH HONOUR</h2>
+
+          <div class="rules-grid-5">
+            <div class="rule-item-card">
+              <div class="rule-num">01</div>
+              <h4 class="rule-title">NO HEAL</h4>
+              <p class="rule-thai">ห้ามใช้ Heal ด้วย Skill, Item หรือวิธีอื่น</p>
+            </div>
+
+            <div class="rule-item-card">
+              <div class="rule-num">02</div>
+              <h4 class="rule-title">NO COMMAND</h4>
+              <p class="rule-thai">ห้ามใช้ Command</p>
+            </div>
+
+            <div class="rule-item-card">
+              <div class="rule-num">03</div>
+              <h4 class="rule-title">NO THIRD-PARTY PROGRAMS</h4>
+              <p class="rule-thai">ห้ามใช้โปรแกรมภายนอก</p>
+            </div>
+
+            <div class="rule-item-card">
+              <div class="rule-num">04</div>
+              <h4 class="rule-title">NO BUGS / EXPLOITS</h4>
+              <p class="rule-thai">ห้ามใช้ Bug หรือ Exploit เพื่อสร้างความได้เปรียบที่ไม่เป็นธรรม</p>
+            </div>
+
+            <div class="rule-item-card">
+              <div class="rule-num">05</div>
+              <h4 class="rule-title">SPORTSMANSHIP</h4>
+              <p class="rule-thai">ผู้เข้าแข่งขันต้องปฏิบัติตามหลัก Sportsmanship</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tournament Discipline / Penalties -->
+      <div class="penalties-section">
+        <div class="container">
+          <span class="section-tag">PENALTIES</span>
+          <h2 class="section-title">TOURNAMENT DISCIPLINE</h2>
+          <p style="font-size: 0.85rem; color: var(--color-text-secondary);">Violations may result in penalties determined by the tournament committee.</p>
+
+          <div class="penalty-boxes-grid">
+            <div class="penalty-box">WARNING</div>
+            <div class="penalty-box">ROUND PENALTY</div>
+            <div class="penalty-box">TEAM PENALTY</div>
+            <div class="penalty-box">REVOCATION / DISQUALIFICATION</div>
+          </div>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted); text-align: center;">Penalty decisions are determined by the tournament committee according to the circumstances of each case.</p>
+        </div>
+      </div>
+
+      <!-- Prize Pool Top 3 -->
+      <div class="container" style="padding-top: 56px; padding-bottom: 56px;">
+        <span class="section-tag">PRIZE POOL</span>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+          <h2 class="section-title">RECOGNITION FOR THE TOP 3</h2>
+          <span style="font-size: 0.85rem; font-weight: 800; letter-spacing: 0.08em; color: var(--color-brand); text-transform: uppercase;">TOP 3 TEAMS</span>
+        </div>
+
+        <div class="prize-pool-grid">
+          <div class="prize-card champion">
+            <div class="prize-tier-num">01</div>
+            <div class="prize-tier-title">CHAMPION</div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-tier-num" style="color: var(--color-brand);">02</div>
+            <div class="prize-tier-title">RUNNER-UP</div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-tier-num" style="color: var(--color-brand);">03</div>
+            <div class="prize-tier-title">THIRD PLACE</div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 24px;">
+          Registration revenue goes into the central prize pool. The exact prize distribution follows the tournament committee announcement.
+        </p>
+
+        <div style="background: #FAFAFA; border-left: 4px solid var(--color-text-primary); padding: 18px 24px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+          <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">REGISTRATION NOTICE</div>
+          <p style="font-size: 0.8rem; color: var(--color-text-secondary);">
+            Registration fees may be non-refundable in cases of withdrawal, no-show, or disqualification due to rule violations.
+          </p>
+        </div>
+      </div>
+
+      <!-- CTA Dark Banner -->
+      <div class="cta-banner-dark">
+        <div class="container">
+          <div class="cta-content">
+            <div style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; color: var(--color-brand); margin-bottom: 8px;">KING OF GAKURAN TOURNAMENT</div>
+            <h2 class="cta-title">READY TO ENTER THE BATTLE?</h2>
+            <p class="cta-desc">Build your team. Prepare for every round. Enter King of Gakuran.</p>
+            <div style="display: flex; gap: 16px; justify-content: center;">
+              <a href="#register" class="btn btn-light-pill">REGISTER YOUR TEAM</a>
+              <a href="#rules" class="btn btn-outline" style="color: #fff; border-color: #fff;">VIEW FULL RULES</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: TEAMS DIRECTORY (3.png, 6.png)
+         ========================================================================== -->
+    <section id="view-teams" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">TEAMS</span>
+          <h1 class="section-title">MEET THE TEAMS</h1>
+          <div class="badge-tagline">THE SCHOOLS ENTER THE BATTLE.</div>
+          <p class="section-subtitle">Explore the teams competing in the King of Gakuran Tournament.</p>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar-grid">
+        <div class="container" style="display: contents;">
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">TEAMS</div>
+            <div class="stat-bar-value" id="stat-total-teams">- TEAMS</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">REGISTERED</div>
+            <div class="stat-bar-value">REGISTERED TEAMS</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">STATUS</div>
+            <div class="stat-bar-value">TOURNAMENT 2026</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">FORMAT</div>
+            <div class="stat-bar-value">15 VS 15 BEST OF 3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Search & Filter Bar -->
+        <div class="search-filter-bar">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="teams-search-input" class="search-input" placeholder="Search team name or server name...">
+          </div>
+
+          <div class="filter-pills">
+            <span style="font-size: 0.7rem; font-weight: 800; color: var(--color-text-muted); margin-right: 8px;">FILTER</span>
+            <button class="filter-pill active" data-filter="all">ALL TEAMS</button>
+            <button class="filter-pill" data-filter="verified">VERIFIED</button>
+            <button class="filter-pill" data-filter="pending">PENDING</button>
+            <button class="filter-pill" data-filter="eliminated">ELIMINATED</button>
+          </div>
+        </div>
+
+        <!-- Featured Team Hero Card (Hidden when no teams registered) -->
+        <div id="featured-team-banner" class="featured-team-banner" style="display: none;">
+          <div class="featured-left">
+            <div id="featured-logo-shield" class="team-logo-shield" style="width: 72px; height: 72px; font-size: 1.25rem;">TL</div>
+            <div>
+              <div style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; color: var(--color-brand); text-transform: uppercase;">FEATURED TEAM</div>
+              <h3 id="featured-name-text" class="featured-team-name">TEAM NAME</h3>
+              <div id="featured-server-text" class="featured-server">SERVER NAME</div>
+              <div>
+                <span style="font-size: 0.72rem; color: #9CA3AF; margin-right: 12px;">15 STARTERS</span>
+                <span class="badge-pill badge-verified">VERIFIED</span>
+              </div>
+            </div>
+          </div>
+          <a id="featured-link-btn" href="#teams" class="btn btn-outline" style="color: #fff; border-color: #fff;">VIEW TEAM PROFILE →</a>
+        </div>
+
+        <!-- Section Title -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+          <div>
+            <span class="section-tag">TEAM DIRECTORY</span>
+            <h2 class="section-title" style="margin-bottom: 0;">ALL COMPETING TEAMS</h2>
+          </div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase;">SHOWING ALL TEAMS</span>
+        </div>
+
+        <!-- Teams Grid -->
+        <div id="teams-grid" class="teams-cards-grid">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+
+      <!-- CTA Dark Banner -->
+      <div class="cta-banner-dark" style="padding: 64px 0;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: gap: 24px;">
+          <div style="text-align: left;">
+            <div style="font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; color: var(--color-brand); text-transform: uppercase; margin-bottom: 6px;">ENTER THE BATTLE</div>
+            <h2 style="font-size: 1.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 4px;">YOUR TEAM COULD BE HERE.</h2>
+            <p style="color: var(--color-text-light-muted); font-size: 0.85rem;">Register your team and enter the King of Gakuran Tournament.</p>
+          </div>
+          <a href="#register" class="btn btn-light-pill">REGISTER YOUR TEAM</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: TEAM PROFILE (4.png)
+         ========================================================================== -->
+    <section id="view-team-profile" class="view-section">
+      <!-- Dynamically populated via app.js renderTeamProfile() -->
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: PLAYERS DIRECTORY & PROFILE (7.png, 8.png)
+         ========================================================================== -->
+    <section id="view-players" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">PLAYERS</span>
+          <h1 class="section-title">PLAYER DIRECTORY</h1>
+          <p class="section-subtitle">Explore the players representing teams in the King of Gakuran Tournament.</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding-top: 32px; padding-bottom: 64px;">
+        <span class="section-tag">OFFICIAL ROSTERS</span>
+        <h2 class="section-title">FIND A PLAYER</h2>
+
+        <div id="players-list" class="teams-cards-grid" style="margin-top: 24px;">
+          <!-- Dynamically rendered via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <section id="view-player-profile" class="view-section">
+      <!-- Dynamically populated via app.js renderPlayerProfile() -->
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: MATCHES & LIVE (9.png, 10.png, 11.png)
+         ========================================================================== -->
+    <section id="view-matches" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">MATCHES</span>
+          <h1 class="section-title">MATCH DIRECTORY</h1>
+          <p class="section-subtitle">Follow the matches of the King of Gakuran Tournament.</p>
+        </div>
+      </div>
+
+      <div class="stats-bar-grid">
+        <div class="container" style="display: contents;">
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">FORMAT</div>
+            <div class="stat-bar-value">BEST OF 3</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">ROUNDS</div>
+            <div class="stat-bar-value">3</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">ROUND 01 & 02</div>
+            <div class="stat-bar-value">1 VS 1 SURVIVAL</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">ROUND 03</div>
+            <div class="stat-bar-value">15 VS 15</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="padding-top: 40px; padding-bottom: 64px;">
+        <div id="matches-list">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- View: Live Match (11.png) -->
+    <section id="view-live" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">LIVE MATCH</span>
+          <h1 class="section-title">LIVE MATCH</h1>
+          <p class="section-subtitle">FOLLOW THE MATCH AS IT HAPPENS.</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding: 40px 24px 80px;">
+        <div class="breadcrumb-nav">
+          <a href="#matches">MATCHES</a> / <span>LIVE MATCH</span>
+        </div>
+
+        <div style="text-align: center; padding: 80px 24px; background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 8px;">NO LIVE MATCHES</h2>
+          <p style="color: var(--color-text-secondary); margin-bottom: 24px; font-size: 0.9rem;">There are currently no live matches.</p>
+          <a href="#matches" class="btn btn-primary" style="padding: 12px 32px;">VIEW MATCHES</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: RANKING (12.png)
+         ========================================================================== -->
+    <section id="view-ranking" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">RANKING</span>
+          <h1 class="section-title">TOURNAMENT RANKING</h1>
+          <p class="section-subtitle">Track the current standing of the King of Gakuran Tournament.</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding-top: 32px; padding-bottom: 64px;">
+
+        <!-- Official Scoring Formula Card -->
+        <div style="background: #ffffff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 24px; margin-bottom: 32px; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <span class="section-tag">ONLINE GROUP STAGE FORMULA</span>
+              <h2 style="font-size: 1.2rem; font-weight: 900; margin: 0; text-transform: uppercase;">เกณฑ์การคิดคะแนนรอบเก็บแต้มออนไลน์</h2>
+            </div>
+            <div style="background: #F3F4F6; padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 800; color: #374151;">
+              กติกา: ชนะ 2-0 (+3 PTS) | ชนะ 2-1 (+2 PTS) | แพ้ (0 PTS)
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 18px;">
+            <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 16px;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: #166534; text-transform: uppercase; margin-bottom: 4px;">WIN 2-0 (ชนะ 2 เซ็ตรวด)</div>
+              <div style="font-size: 1.8rem; font-weight: 900; color: #15803D;">+3 <span style="font-size: 0.85rem;">PTS</span></div>
+              <p style="font-size: 0.75rem; color: #166534; margin: 4px 0 0;">เมื่อเอาชนะคู่แข่ง 2 ต่อ 0 เซ็ต (Clean Sweep)</p>
+            </div>
+            <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 8px; padding: 16px;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: #1E40AF; text-transform: uppercase; margin-bottom: 4px;">WIN 2-1 (ชนะ 2 ต่อ 1)</div>
+              <div style="font-size: 1.8rem; font-weight: 900; color: #2563EB;">+2 <span style="font-size: 0.85rem;">PTS</span></div>
+              <p style="font-size: 0.75rem; color: #1E40AF; margin: 4px 0 0;">เมื่อเฉือนชนะคู่แข่ง 2 ต่อ 1 เซ็ต (Decisive Win)</p>
+            </div>
+            <div style="background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 16px;">
+              <div style="font-size: 0.72rem; font-weight: 800; color: #991B1B; text-transform: uppercase; margin-bottom: 4px;">MATCH LOSS (แพ้แมตช์)</div>
+              <div style="font-size: 1.8rem; font-weight: 900; color: #B91C1C;">0 <span style="font-size: 0.85rem;">PTS</span></div>
+              <p style="font-size: 0.75rem; color: #991B1B; margin: 4px 0 0;">เมื่อแพ้การแข่งขันในแมตช์ (0-2 หรือ 1-2)</p>
+            </div>
+          </div>
+
+          <!-- Playoff Qualification Rule Banner -->
+          <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; font-size: 0.78rem;">
+            <span style="font-weight: 900; color: #92400E;">🏆 กติกาการเข้ารอบ PLAYOFF:</span>
+            <span style="background: #DBEAFE; color: #1E40AF; padding: 4px 10px; border-radius: 999px; font-weight: 800;">🔷 อันดับ 1 - 4: ได้ไปสายบน (Upper Bracket)</span>
+            <span style="background: #FEF3C7; color: #B45309; padding: 4px 10px; border-radius: 999px; font-weight: 800;">🔶 อันดับ 5 - 8: ได้ไปสายล่าง (Lower Bracket)</span>
+            <span style="background: #F3F4F6; color: #6B7280; padding: 4px 10px; border-radius: 999px; font-weight: 800;">⚪ อันดับ 9+: ตกรอบ</span>
+          </div>
+        </div>
+
+        <!-- Standings Table -->
+
+        <div style="margin-bottom: 40px;">
+          <div style="margin-bottom: 16px;">
+            <span class="section-tag">OVERALL STANDINGS</span>
+            <h2 class="section-title" style="margin-bottom: 0;">ตารางอันดับและคะแนนสะสม</h2>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 70px;">RANK</th>
+                  <th>SERVER / TEAM</th>
+                  <th style="width: 80px; text-align: center;">MATCH W</th>
+                  <th style="width: 80px; text-align: center;">MATCH L</th>
+                  <th style="width: 130px; text-align: right;">POINTS</th>
+                  <th style="width: 110px; text-align: center;">STATUS</th>
+                </tr>
+              </thead>
+              <tbody id="ranking-table-body">
+                <!-- Dynamically rendered via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Detailed Match Points Breakdown by Date -->
+        <div style="background: #ffffff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 28px; box-shadow: var(--shadow-sm);">
+          <div style="margin-bottom: 20px;">
+            <span class="section-tag">POINTS LOG BY DATE</span>
+            <h2 class="section-title" style="margin-bottom: 4px;">ประวัติการได้คะแนนแยกตามวันและแมตช์</h2>
+            <p class="section-subtitle">ตรวจสอบรายละเอียดว่าแต่ละเซิร์ฟเวอร์แข่งวันไหน และได้แต้มจากแมตช์เท่าไร</p>
+          </div>
+          <div class="table-wrap" id="ranking-date-breakdown-wrap">
+            <!-- Dynamically populated via app.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: PLAYOFF BRACKET & SEEDING (8 SERVERS)
+         ========================================================================== -->
+    <!-- ==========================================================================
+         VIEW: PLAYOFF BRACKET & SEEDING (DOUBLE ELIMINATION - UPPER & LOWER)
+         ========================================================================== -->
+    <section id="view-playoff" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">PLAYOFF BRACKET</span>
+          <h1 class="section-title">DOUBLE ELIMINATION PLAYOFF</h1>
+          <p class="section-subtitle">
+            ระบบจัดอันดับ Seed #1 ถึง #8 จากคะแนนสะสมรอบ Online: 4 อันดับแรกไปสายบน (Upper Bracket) และ 4 อันดับล่างไปสายล่าง (Lower Bracket) โดยผู้แพ้จากสายบนตกลงไปแก้ตัวในสายล่าง และทีมสายล่างที่ชนะทีมสุดท้ายจะได้กลับขึ้นสายบนเพื่อชิง Grand Final!
+          </p>
+          <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <button id="btn-reseed-playoff" class="btn btn-primary">⚡ GENERATE / RE-SEED BRACKET</button>
+            <a href="#ranking" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">VIEW RANKING</a>
+            <a href="#match-control" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">MATCH CONTROL</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="padding-top: 36px; padding-bottom: 64px;">
+
+        <!-- Seeding Summary Bar (#1 to #8) -->
+        <div style="background: #ffffff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 20px 24px; margin-bottom: 32px; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <span class="section-tag">OFFICIAL SEEDING</span>
+              <h2 style="font-size: 1.15rem; font-weight: 900; margin: 0; text-transform: uppercase;">8 PLAYOFF QUALIFIED SERVERS</h2>
+            </div>
+            <div style="font-size: 0.75rem; font-weight: 800; color: var(--color-text-muted);">
+              FORMAT: DOUBLE ELIMINATION · BEST OF 3 · 10 MATCHES (4 สายบน + 4 สายล่าง)
+            </div>
+          </div>
+
+          <div id="playoff-seeding-chips" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px;">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- GRAND FINAL SHOWCASE CARD -->
+        <div class="bracket-section-box grand-final-theme" style="margin-bottom: 40px;">
+          <div class="bracket-section-header" style="border-bottom: 2px solid #FDE68A;">
+            <div>
+              <span class="section-tag" style="background:#FEF3C7; color:#B45309;">DECISIVE CHAMPIONSHIP MATCH</span>
+              <h2 style="font-size: 1.35rem; font-weight: 900; margin: 4px 0 0; color: #92400E;">🏆 THE GRAND FINAL</h2>
+              <div style="font-size: 0.8rem; color: #78350F; margin-top: 2px;">
+                แชมป์สายบน (Winner Upper Final) พบกับ แชมป์สายล่างที่ผ่านเข้ารอบสุดท้าย (Winner Lower Final)
+              </div>
+            </div>
+            <div>
+              <span class="badge-pill" style="background: #D97706; color: #fff; font-size: 0.75rem; padding: 4px 10px;">BEST OF 3 · DECIDES THE KING</span>
+            </div>
+          </div>
+
+          <div style="max-width: 540px; margin: 0 auto;" id="bracket-grand-final">
+            <!-- Dynamically rendered Grand Final Match Card -->
+          </div>
+        </div>
+
+        <!-- UPPER BRACKET (สายบน) -->
+        <div class="bracket-section-box upper-theme">
+          <div class="bracket-section-header">
+            <div>
+              <span class="section-tag" style="background:#DBEAFE; color:#1E40AF;">WINNERS BRACKET</span>
+              <h2 style="font-size: 1.25rem; font-weight: 900; margin: 4px 0 0; color: #1E3A8A;">🔷 UPPER BRACKET (สายบน — 4 อันดับแรกจากรอบเก็บแต้ม)</h2>
+              <div style="font-size: 0.8rem; color: #4B5563; margin-top: 2px;">
+                อันดับ 1 ถึง 4 จากรอบเก็บแต้มเข้าชิงชัยในสายบน หากแพ้จะตกลงไปแก้ตัวในสายล่าง (Lower Bracket)
+              </div>
+            </div>
+            <div>
+              <span class="badge-pill" style="background:#EFF6FF; color:#2563EB; border:1px solid #BFDBFE;">2 UPPER SF + 1 UPPER FINAL</span>
+            </div>
+          </div>
+
+          <div class="bracket-wrapper" style="box-shadow: none; border: none; padding: 0; background: transparent;">
+            <div class="bracket-container" style="gap: 28px;">
+
+              <!-- Upper SF (2 matches: #1 vs #4, #2 vs #3) -->
+              <div class="bracket-column" style="min-width: 280px;">
+                <div class="bracket-col-header">
+                  <div class="bracket-col-title">UPPER SEMIFINALS (สายบนรอบแรก)</div>
+                  <div class="bracket-col-sub">อันดับ 1 vs อันดับ 4 · อันดับ 2 vs อันดับ 3</div>
+                </div>
+                <div class="bracket-matches" id="bracket-ub-sf">
+                  <!-- Dynamically generated UB-SF1, UB-SF2 -->
+                </div>
+              </div>
+
+              <!-- Upper Final (1 match) -->
+              <div class="bracket-column" style="min-width: 280px;">
+                <div class="bracket-col-header">
+                  <div class="bracket-col-title" style="color: #2563EB;">UPPER FINAL (ชิงชนะเลิศสายบน)</div>
+                  <div class="bracket-col-sub">ผู้ชนะเข้า GRAND FINAL · ผู้แพ้ตกไป LOWER FINAL</div>
+                </div>
+                <div class="bracket-matches" id="bracket-ub-final">
+                  <!-- Dynamically generated UB-FINAL -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- LOWER BRACKET (สายล่าง) -->
+        <div class="bracket-section-box lower-theme">
+          <div class="bracket-section-header">
+            <div>
+              <span class="section-tag" style="background:#FEF3C7; color:#B45309;">LOSERS RECOVERY BRACKET</span>
+              <h2 style="font-size: 1.25rem; font-weight: 900; margin: 4px 0 0; color: #B45309;">🔶 LOWER BRACKET (สายล่าง)</h2>
+              <div style="font-size: 0.8rem; color: #4B5563; margin-top: 2px;">
+                ทีมที่แพ้จากสายบนจะตกลงมาสู้ในสายล่าง แพ้อีกครั้งคือตกรอบทันที — <strong>ทีมสุดท้ายที่ชนะรอบ Lower Final จะได้สิทธิ์กลับขึ้นไปชิงชนะเลิศใน Grand Final!</strong>
+              </div>
+            </div>
+            <div>
+              <span class="badge-pill" style="background:#FFFBEB; color:#D97706; border:1px solid #FDE68A;">2 R1 + 2 R2 + 1 SF + 1 LOWER FINAL</span>
+            </div>
+          </div>
+
+          <div class="bracket-wrapper" style="box-shadow: none; border: none; padding: 0; background: transparent;">
+            <div class="bracket-container" style="gap: 24px;">
+
+              <!-- Lower Round 1 (2 matches: Loser QF1-4) -->
+              <div class="bracket-column" style="min-width: 255px;">
+                <div class="bracket-col-header">
+                  <div class="bracket-col-title">LOWER ROUND 1</div>
+                  <div class="bracket-col-sub">4 เธญเธฑเธเธ”เธฑเธเธฅเนเธฒเธเธเธฒเธเธฃเธญเธเน€เธเนเธเนเธ•เนเธก (#5 vs #8 ยท #6 vs #7)</div>
+                </div>
+                <div class="bracket-matches" id="bracket-lb-r1">
+                  <!-- Dynamically generated LB-R1-1, LB-R1-2 -->
+                </div>
+              </div>
+
+              <!-- Lower Round 2 (2 matches: Winner R1 vs Loser UB-SF) -->
+              <div class="bracket-column" style="min-width: 255px;">
+                <div class="bracket-col-header">
+                  <div class="bracket-col-title">LOWER ROUND 2</div>
+                  <div class="bracket-col-sub">WINNERS R1 VS LOSERS UB-SF</div>
+                </div>
+                <div class="bracket-matches" id="bracket-lb-r2">
+                  <!-- Dynamically generated LB-R2-1, LB-R2-2 -->
+                </div>
+              </div>
+
+              <!-- Lower Semifinal (1 match) -->
+              <div class="bracket-column" style="min-width: 255px;">
+                <div class="bracket-col-header">
+                  <div class="bracket-col-title">LOWER SEMIFINAL</div>
+                  <div class="bracket-col-sub">WINNER TO LOWER FINAL · LOSER 4TH</div>
+                </div>
+                <div class="bracket-matches" id="bracket-lb-sf">
+                  <!-- Dynamically generated LB-SF -->
+                </div>
+              </div>
+
+              <!-- Lower Final (1 match: Winner LB-SF vs Loser UB-FINAL) -->
+              <div class="bracket-column" style="min-width: 260px;">
+                <div class="bracket-col-header">
+                  <div class="bracket-col-title" style="color: #D97706;">LOWER FINAL</div>
+                  <div class="bracket-col-sub">WINNER ADVANCES BACK TO GRAND FINAL!</div>
+                </div>
+                <div class="bracket-matches" id="bracket-lb-final">
+                  <!-- Dynamically generated LB-FINAL -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Automatic Double Elimination Advance Notice -->
+        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 20px 24px; margin-top: 32px; display: flex; align-items: flex-start; gap: 16px;">
+          <div style="font-size: 1.8rem;">⚡</div>
+          <div>
+            <div style="font-weight: 800; font-size: 0.95rem; color: #166534; text-transform: uppercase;">
+              DOUBLE ELIMINATION AUTOMATIC BRACKET ADVANCE SYSTEM
+            </div>
+            <p style="font-size: 0.82rem; color: #15803D; margin: 4px 0 0; line-height: 1.5;">
+              • เมื่อ Referee หรือ Admin บันทึกและยืนยันผลการแข่งขันใน Match Control ระบบจะดำเนินการจัดเส้นทางให้อัตโนมัติทันที:<br>
+              &nbsp;&nbsp;1. <strong>ทีมชนะสายบน:</strong> เลื่อนเข้าสู่รอบถัดไปของสายบน (UB-QF → UB-SF → UB-FINAL → GRAND-FINAL)<br>
+              &nbsp;&nbsp;2. <strong>ทีมแพ้สายบน:</strong> จะถูกดรอป (Drop) ลงมาประกบคู่แข่งขันในสายล่าง (Lower Bracket) โดยไม่ต้องกรอกข้อมูลใหม่<br>
+              &nbsp;&nbsp;3. <strong>ทีมชนะสายล่างคนสุดท้าย:</strong> (Winner LB-FINAL) จะได้สิทธิ์ตีตั๋วกลับขึ้นสู่สายบน เข้าชิงแชมป์ใน Grand Final กับแชมป์สายบน!
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: SERVER COMPARE TOOL
+         ========================================================================== -->
+    <section id="view-compare" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">HEAD-TO-HEAD</span>
+          <h1 class="section-title">SERVER COMPARE</h1>
+          <p class="section-subtitle">
+            เปรียบเทียบสถิติสองเซิร์ฟเวอร์แบบตัวต่อตัว จากผลการแข่งขันจริง ทั้งอันดับ, อัตราการชนะ (Win Rate) และประวัติการเจอกัน
+          </p>
+        </div>
+      </div>
+
+      <div class="container" style="padding-top: 36px; padding-bottom: 64px;">
+        <!-- Server Selectors -->
+        <div style="background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 24px; margin-bottom: 32px;">
+          <div class="form-grid-2" style="gap: 20px;">
+            <div class="form-group">
+              <label class="form-label">เลือก SERVER A</label>
+              <select id="compare-select-a" class="form-input">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">เลือก SERVER B</label>
+              <select id="compare-select-b" class="form-input">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison Display Area -->
+        <div id="compare-result-area">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: SERVER OWNER PORTAL & VERIFICATION
+         ========================================================================== -->
+    <section id="view-server-owner" class="view-section">
+      <!-- Owner Login Screen -->
+      <div id="owner-login-screen" class="directory-hero" style="min-height: 80vh; display: flex; align-items: center;">
+        <div class="container" style="max-width: 480px; margin: 0 auto; padding: 40px 24px;">
+          <div style="text-align: center; margin-bottom: 32px;">
+            <div style="width: 64px; height: 64px; background: var(--color-brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.8rem; color:#fff;">👑</div>
+            <span class="section-tag">SERVER MANAGEMENT</span>
+            <h1 class="section-title" style="font-size: 1.8rem;">SERVER OWNER LOGIN</h1>
+            <p class="section-subtitle">เข้าสู่ระบบจัดการเซิร์ฟเวอร์ของตนเอง ด้วยรหัส Verification Code</p>
+          </div>
+
+          <form id="owner-login-form" class="reg-form-section">
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label class="form-label">เลือก SERVER ของคุณ</label>
+              <select id="owner-login-server-select" class="form-input">
+                <option value="">-- เลือกเซิร์ฟเวอร์ --</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label class="form-label">SERVER VERIFICATION CODE</label>
+              <input type="text" id="owner-login-code" class="form-input" placeholder="เช่น GAKU-A123" style="letter-spacing: 0.15em; text-align: center; text-transform: uppercase;">
+            </div>
+            <div id="owner-login-error" style="display:none; background: #FEE2E2; color: #B91C1C; padding: 10px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; margin-bottom: 12px;">⚠️ Verification Code ไม่ถูกต้อง</div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">ENTER SERVER DASHBOARD</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Owner Dashboard -->
+      <div id="owner-dashboard" style="display: none;">
+        <div class="directory-hero">
+          <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+              <div>
+                <span class="section-tag">SERVER OWNER DASHBOARD</span>
+                <h1 class="section-title" id="owner-dash-server-name">SERVER MANAGEMENT</h1>
+                <p class="section-subtitle" id="owner-dash-sub">จัดการรายชื่อผู้เล่น, รายงานตัว Check-in, ตารางแข่ง และยื่นเรื่องร้องเรียน</p>
+              </div>
+              <button id="owner-logout-btn" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">LOG OUT</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="container" style="padding: 40px 24px 80px;">
+
+          <!-- Server Overview Grid -->
+          <div class="owner-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+              <div>
+                <span class="section-tag">SERVER STATUS & SECURITY</span>
+                <h3 style="font-size: 1.25rem; font-weight: 900; margin: 0; text-transform: uppercase;" id="owner-server-header-name">—</h3>
+              </div>
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <span id="owner-roster-lock-badge" class="badge-pill badge-verified">ROSTER OPEN</span>
+                <span id="owner-checkin-status-badge" class="badge-pill badge-pending">CHECK-IN: WAITING</span>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+              <div class="owner-stat-box">
+                <div class="lbl">VERIFICATION CODE</div>
+                <div class="num" id="owner-dash-code" style="font-size: 1.2rem; font-family: monospace; color: #111;">—</div>
+                <button id="owner-regen-code-btn" class="btn btn-outline" style="font-size: 0.68rem; padding: 4px 8px; margin-top: 6px;">REGENERATE CODE</button>
+              </div>
+              <div class="owner-stat-box">
+                <div class="lbl">CHECKED-IN STARTERS</div>
+                <div class="num" id="owner-dash-checkin-count" style="color: #16A34A;">0 / 15</div>
+                <button id="owner-checkin-all-btn" class="btn btn-primary" style="font-size: 0.68rem; padding: 4px 10px; margin-top: 6px;">CHECK-IN ALL 15</button>
+              </div>
+              <div class="owner-stat-box">
+                <div class="lbl">TOURNAMENT RANK</div>
+                <div class="num" id="owner-dash-rank">#--</div>
+                <div style="font-size: 0.72rem; color: #888; margin-top: 4px;" id="owner-dash-pts">0 PTS</div>
+              </div>
+              <div class="owner-stat-box">
+                <div class="lbl">ROSTER LOCK STATUS</div>
+                <div class="num" id="owner-dash-lock-txt" style="font-size: 1.1rem; color: #16A34A;">OPEN</div>
+                <div style="font-size: 0.7rem; color: #888; margin-top: 4px;">แก้ไขรายชื่อได้ก่อนแข่ง</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Starters Check-in & Roster Management -->
+          <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; margin-bottom: 32px;">
+            <!-- Player Check-in List -->
+            <div class="owner-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <span class="section-tag">PLAYER CHECK-IN</span>
+                  <h4 style="font-size: 1.05rem; font-weight: 900; margin: 0; text-transform: uppercase;">15 STARTERS CHECK-IN LIST</h4>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 700;">คลิกเพื่อยืนยันตัวตน</span>
+              </div>
+              <div id="owner-starters-checkin-list">
+                <!-- Dynamically populated 15 starters -->
+              </div>
+            </div>
+
+            <!-- Emergency Substitute Request & Schedule -->
+            <div>
+              <!-- Emergency Substitute -->
+              <div class="owner-card" style="margin-bottom: 24px;">
+                <span class="section-tag">EMERGENCY SUBSTITUTE</span>
+                <h4 style="font-size: 1.05rem; font-weight: 900; margin: 0 0 12px; text-transform: uppercase;">ขอเปลี่ยนตัวผู้เล่นฉุกเฉิน</h4>
+                <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 16px;">
+                  กรณี Starter ติดธุระหรือไม่พร้อมแข่ง สามารถส่งคำขอเปลี่ยนตัวเป็น Substitute จาก Roster ให้ Referee หรือ Admin ตรวจสอบได้
+                </p>
+                <form id="owner-sub-form">
+                  <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">เลือก STARTER ที่ต้องการเปลี่ยนออก</label>
+                    <select id="owner-sub-starter-select" class="form-input"></select>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">เลือก SUBSTITUTE สำรองที่ลงแทน</label>
+                    <select id="owner-sub-sub-select" class="form-input"></select>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label">เหตุผลความจำเป็น</label>
+                    <input type="text" id="owner-sub-reason" class="form-input" placeholder="เช่น เน็ตหลุด / ติดภารกิจฉุกเฉิน" required>
+                  </div>
+                  <button type="submit" class="btn btn-outline" style="width: 100%; border-color: var(--color-brand); color: var(--color-brand); font-weight: 800;">
+                    SUBMIT SUBSTITUTE REQUEST
+                  </button>
+                </form>
+              </div>
+
+              <!-- Next Match Schedule -->
+              <div class="owner-card">
+                <span class="section-tag">MY MATCH SCHEDULE</span>
+                <h4 style="font-size: 1.05rem; font-weight: 900; margin: 0 0 12px; text-transform: uppercase;">ตารางการแข่งขันของเซิร์ฟเวอร์</h4>
+                <div id="owner-schedule-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dispute & Notifications Section -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <!-- Submit Dispute / Appeal -->
+            <div class="owner-card">
+              <span class="section-tag">DISPUTE & APPEAL</span>
+              <h4 style="font-size: 1.05rem; font-weight: 900; margin: 0 0 12px; text-transform: uppercase;">ยื่นคำร้องคัดค้าน / แจ้งปัญหาเทคนิค</h4>
+              <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 16px;">
+                ยื่นข้อคัดค้านผลการแข่ง, สิทธิ์ผู้เล่น หรือปัญหาทางเทคนิคพร้อมแนบหลักฐานให้ฝ่ายจัดแข่งขันพิจารณา
+              </p>
+              <form id="owner-dispute-form">
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label class="form-label">หัวข้อคำร้อง (SUBJECT)</label>
+                  <select id="owner-dispute-subject" class="form-input">
+                    <option value="Match Result Appeal">คัดค้านผลการแข่งขัน (Match Result Appeal)</option>
+                    <option value="Player Eligibility Dispute">สิทธิ์ผู้เล่นคู่แข่งไม่ถูกต้อง (Player Eligibility)</option>
+                    <option value="Rule Violation Report">รายงานการละเมิดกฎกติกา (Rule Violation)</option>
+                    <option value="Technical Issue Report">ปัญหาทางเทคนิค / ตัวเกมหลุด (Technical Issue)</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label class="form-label">รายละเอียด (DESCRIPTION)</label>
+                  <textarea id="owner-dispute-desc" class="form-input" rows="3" placeholder="อธิบายข้อเท็จจริง เวลาที่เกิดเหตุ และข้อมูลคู่กรณี..." required></textarea>
+                </div>
+                <div class="form-group" style="margin-bottom: 14px;">
+                  <label class="form-label">ลิงก์หลักฐาน / คลิปวิดีโอ (EVIDENCE URL)</label>
+                  <input type="text" id="owner-dispute-evidence" class="form-input" placeholder="เช่น ลิงก์รูปภาพ หรือคลิป Stream / Discord">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">SUBMIT DISPUTE TO ADMIN</button>
+              </form>
+            </div>
+
+            <!-- Server Notifications -->
+            <div class="owner-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <div>
+                  <span class="section-tag">NOTIFICATIONS</span>
+                  <h4 style="font-size: 1.05rem; font-weight: 900; margin: 0; text-transform: uppercase;">การแจ้งเตือนจากระบบ</h4>
+                </div>
+                <button id="owner-mark-read-btn" class="btn btn-outline" style="font-size: 0.68rem; padding: 4px 8px;">MARK ALL READ</button>
+              </div>
+              <div id="owner-notif-list" style="max-height: 280px; overflow-y: auto;">
+                <!-- Dynamically populated notifications -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: RULES (13.png)
+         ========================================================================== -->
+    <section id="view-rules" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">RULES & ARCHITECTURE</span>
+          <h1 class="section-title">TOURNAMENT ARCHITECTURE IS READY.</h1>
+          <p class="section-subtitle">
+            Explore approved teams, player profiles, match details, rankings, official news, rules, and the published Prize Pool from one connected tournament system.
+          </p>
+          <div style="margin-top: 24px; display: flex; gap: 16px;">
+            <a href="#teams" class="btn btn-primary">VIEW TEAMS</a>
+            <a href="#matches" class="btn btn-outline">VIEW MATCHES</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="padding-top: 48px; padding-bottom: 64px;">
+        <div class="reg-form-section" style="margin-bottom: 32px;">
+          <h3 class="form-section-title">1. TOURNAMENT STRUCTURE & FORMAT</h3>
+          <p style="font-size: 0.9rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 16px;">
+            การแข่งขัน <strong>King of Gakuran</strong> ใช้รูปแบบการแข่งขัน Best of 3 (ชนะ 2 ใน 3 รอบ) ประกอบไปด้วย:
+          </p>
+          <ul style="padding-left: 24px; font-size: 0.9rem; line-height: 1.8; color: var(--color-text-secondary); margin-bottom: 20px;">
+            <li><strong>Round 01 (1 VS 1 Survival):</strong> ผู้เล่นแข่งขันแบบตัวต่อตัว ฝ่ายที่ชนะจะอยู่ในสังเวียนต่อ ส่วนฝ่ายที่แพ้จะออกจากสนามและให้เพื่อนร่วมทีมคนถัดไปลงมาสู้ต่อ</li>
+            <li><strong>Round 02 (1 VS 1 Survival):</strong> รูปแบบเดิมจนกว่าทีมใดทีมหนึ่งจะไม่มีผู้เล่นเหลืออยู่</li>
+            <li><strong>Round 03 (15 VS 15 Decisive Battle):</strong> หากเสมอกัน 1-1 จะตัดสินด้วยการส่งผู้เล่นตัวจริงทั้ง 15 คนลงสู่สนามพร้อมกัน ฝ่ายที่กำจัดคู่ต่อสู้หมดก่อนจะเป็นผู้ชนะรอบเด็ดขาด</li>
+            <li><strong>หมายเหตุ:</strong> หากทีมใดชนะติดต่อกันทั้ง Round 01 และ Round 02 จะถือว่าชนะแมตช์ทันที และไม่ต้องแข่งขันใน Round 03</li>
+          </ul>
+        </div>
+
+        <div class="reg-form-section">
+          <h3 class="form-section-title">2. CODE OF CONDUCT & PENALTIES</h3>
+          <div class="penalty-boxes-grid" style="margin-bottom: 24px;">
+            <div class="penalty-box">01 WARNING<br><span style="font-size: 0.65rem; color: #666;">ตักเตือนครั้งที่ 1</span></div>
+            <div class="penalty-box">02 ROUND PENALTY<br><span style="font-size: 0.65rem; color: #666;">ปรับแพ้ในรอบนั้น</span></div>
+            <div class="penalty-box">03 TEAM PENALTY<br><span style="font-size: 0.65rem; color: #666;">ตัดสิทธิ์ทั้งทีม</span></div>
+            <div class="penalty-box">04 DISQUALIFICATION<br><span style="font-size: 0.65rem; color: #666;">แบนจากการแข่งขัน</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: TEAM REGISTRATION & PAYMENT (5.png)
+         ========================================================================== -->
+    <section id="view-register" class="view-section">
+      <div class="directory-hero">
+        <div class="container">
+          <span class="section-tag">KING OF GAKURAN</span>
+          <h1 class="section-title">TEAM REGISTRATION</h1>
+          <div class="badge-tagline">REGISTER YOUR TEAM FOR THE TOURNAMENT.</div>
+          <p class="section-subtitle">Build your roster and prepare your team for the battle.</p>
+        </div>
+      </div>
+
+      <!-- Quick Specs Bar -->
+      <div class="stats-bar-grid">
+        <div class="container" style="display: contents;">
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">FORMAT</div>
+            <div class="stat-bar-value">BEST OF 3</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">ROSTER</div>
+            <div class="stat-bar-value">15 STARTERS</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">SUBSTITUTES</div>
+            <div class="stat-bar-value">UP TO 5</div>
+          </div>
+          <div class="stat-bar-col">
+            <div class="stat-bar-label">ENTRY FEE</div>
+            <div class="stat-bar-value">300 THB / TEAM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-step Wizard Indicator -->
+      <div class="container">
+        <div class="reg-wizard-steps">
+          <div class="wizard-step-item active">01 / TEAM INFO</div>
+          <div class="wizard-step-item active">02 / ROSTER</div>
+          <div class="wizard-step-item active">03 / REVIEW</div>
+          <div class="wizard-step-item">04 / SUBMIT</div>
+        </div>
+
+        <form id="team-register-form">
+          <div class="reg-layout-grid">
+            <!-- Left Form Area -->
+            <div>
+              <!-- 01 Team Information -->
+              <div class="reg-form-section">
+                <h3 class="form-section-title">01 / TEAM INFORMATION</h3>
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">TEAM NAME <span class="req">*REQUIRED</span></label>
+                    <input type="text" id="reg-team-name" class="form-input" placeholder="Enter team name" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">SERVER NAME <span class="req">*REQUIRED</span></label>
+                    <input type="text" id="reg-server-name" class="form-input" placeholder="Enter server name" required>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">TEAM CONTACT (DISCORD / PHONE)</label>
+                    <input type="text" id="reg-team-contact" class="form-input" placeholder="Discord Handle or Contact Info">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">TEAM LOGO</label>
+                    <div style="display: flex; gap: 14px; align-items: center;">
+                      <div id="reg-logo-preview" class="team-logo-shield pink-theme" style="width: 54px; height: 54px; flex-shrink: 0; overflow: hidden; font-size: 0.7rem; transition: all 0.3s;">LOGO</div>
+                      <div style="flex: 1;">
+                        <label for="reg-team-logo" style="display: inline-block; cursor: pointer; background: var(--color-surface); border: 1.5px dashed var(--color-brand); border-radius: 6px; padding: 8px 16px; font-size: 0.75rem; font-weight: 700; color: var(--color-brand); text-transform: uppercase; letter-spacing: 0.05em; transition: background 0.2s;">
+                          📁 เลือกรูป Logo
+                        </label>
+                        <input type="file" id="reg-team-logo" accept="image/*" style="display: none;">
+                        <div id="reg-logo-filename" style="font-size: 0.68rem; color: var(--color-text-muted); margin-top: 4px;">รองรับ JPG, PNG, GIF</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Server Owner Credentials (รหัส Server Owner สำหรับเข้าสู่ระบบ) -->
+                <div style="margin-top: 18px; padding: 18px; background: #FFF1F2; border: 1px solid #FECDD3; border-radius: var(--radius-sm);">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                      <label class="form-label" style="color: #9F1239; font-weight: 900; margin-bottom: 2px;">
+                        👑 SERVER OWNER VERIFICATION CODE (รหัสสำหรับเข้าสู่ระบบเจ้าของเซิร์ฟเวอร์) <span class="req">*REQUIRED</span>
+                      </label>
+                      <p style="font-size: 0.75rem; color: #881337; margin: 0;">
+                        รหัสนี้ใช้สำหรับเข้าสู่ระบบ <strong>SERVER OWNER LOGIN</strong> เพื่อเช็คชื่อ Roster และจัดการทีมของคุณ
+                      </p>
+                    </div>
+                    <button type="button" id="reg-btn-gen-code" class="btn btn-outline" style="font-size: 0.72rem; padding: 6px 12px; background: #fff; border-color: var(--color-brand); color: var(--color-brand); white-space: nowrap; cursor: pointer;">
+                      ⚡ สุ่มรหัสอัตโนมัติ
+                    </button>
+                  </div>
+                  <div class="form-grid-2">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label" style="font-size: 0.75rem; color: #9F1239;">SERVER VERIFICATION CODE <span class="req">*REQUIRED</span></label>
+                      <input type="text" id="reg-owner-code" class="form-input" placeholder="เช่น GAKU-A101 หรือรหัสที่คุณตั้งเอง" required style="letter-spacing: 0.1em; font-weight: 800; text-transform: uppercase; background: #fff;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label" style="font-size: 0.75rem; color: #9F1239;">ชื่อกัปตัน / เจ้าของเซิร์ฟเวอร์ (CAPTAIN NAME) <span class="req">*REQUIRED</span></label>
+                      <input type="text" id="reg-owner-name" class="form-input" placeholder="เช่น Captain Kenji" required style="background: #fff;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 02 Starting Roster (15 Players) -->
+              <div class="reg-form-section">
+                <div class="form-section-title">
+                  <span>02 / STARTING ROSTER</span>
+                  <span style="font-size: 0.75rem; color: var(--color-brand);">15 STARTING PLAYERS</span>
+                </div>
+                <div id="starters-input-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                  <!-- 15 inputs dynamically generated -->
+                </div>
+              </div>
+
+              <!-- Substitutes (Up to 5) -->
+              <div class="reg-form-section">
+                <div class="form-section-title">
+                  <span>SUBSTITUTES</span>
+                  <span style="font-size: 0.75rem; color: var(--color-text-muted);">UP TO 5 SUBSTITUTE PLAYERS</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                  <div class="form-group">
+                    <label class="form-label">SUBSTITUTE 01</label>
+                    <input type="text" class="form-input sub-name-input" placeholder="Substitute player name">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">SUBSTITUTE 02</label>
+                    <input type="text" class="form-input sub-name-input" placeholder="Substitute player name">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">SUBSTITUTE 03</label>
+                    <input type="text" class="form-input sub-name-input" placeholder="Substitute player name">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">SUBSTITUTE 04</label>
+                    <input type="text" class="form-input sub-name-input" placeholder="Substitute player name">
+                  </div>
+                  <div class="form-group" style="grid-column: 1 / -1;">
+                    <label class="form-label">SUBSTITUTE 05</label>
+                    <input type="text" class="form-input sub-name-input" placeholder="Substitute player name">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 03 Review & Submit -->
+              <div class="reg-form-section">
+                <h3 class="form-section-title">03 / REVIEW & SUBMIT</h3>
+                <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 16px;">
+                  กรุณาตรวจสอบข้อมูลให้ครบถ้วนก่อนส่งใบสมัคร ทีมที่ลงทะเบียนจะได้รับการตรวจสอบจากผู้จัดการแข่งขัน
+                </p>
+                <div style="background: #FDF2F4; border-left: 4px solid var(--color-brand); padding: 16px 20px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: 20px;">
+                  <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--color-brand); margin-bottom: 4px;">REGISTRATION NOTICE</div>
+                  <p style="font-size: 0.82rem; color: var(--color-text-secondary);">สถานะการสมัครจะเป็น PENDING จนกว่าผู้จัดการแข่งขันจะตรวจสอบและอนุมัติ</p>
+                </div>
+              </div>
+
+              <!-- Submit Buttons -->
+              <div style="display: flex; gap: 16px;">
+                <button type="button" class="btn btn-outline" onclick="alert('บันทึกข้อมูลแบบร่างเรียบร้อยแล้ว');">SAVE DRAFT</button>
+                <button type="submit" class="btn btn-primary" style="flex-grow: 1;">SUBMIT REGISTRATION</button>
+              </div>
+            </div>
+
+            <!-- Right Sticky Sidebar -->
+            <div class="reg-sidebar">
+              <div class="fee-breakdown-card">
+                <h4 style="font-size: 0.95rem; font-weight: 900; text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid #FFE4E6; padding-bottom: 10px;">
+                  TOURNAMENT INFO
+                </h4>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.8rem;">
+                  <span>FORMAT</span>
+                  <strong>BEST OF 3</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.8rem;">
+                  <span>STARTERS</span>
+                  <strong>15 PLAYERS</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.8rem;">
+                  <span>SUBSTITUTES</span>
+                  <strong>UP TO 5</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.8rem;">
+                  <span>ค่าสมัคร (ตัวจริง)</span>
+                  <strong style="color: var(--color-brand);">300 THB / ทีม</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0; font-size: 0.8rem;">
+                  <span>ค่าสมัคร (ตัวสำรอง)</span>
+                  <strong style="color: #16A34A;">✓ ฟรี</strong>
+                </div>
+              </div>
+
+              <!-- QR Code Payment Card -->
+              <div style="background: #fff; border: 1px solid #FFE4E6; border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(159,18,57,0.08);">
+                <div style="background: linear-gradient(135deg, var(--color-brand) 0%, #be123c 100%); padding: 12px 16px; text-align: center;">
+                  <div style="font-size: 0.7rem; font-weight: 900; letter-spacing: 0.12em; color: #fff; text-transform: uppercase;">💳 ชำระค่าสมัคร</div>
+                  <div style="font-size: 0.65rem; color: rgba(255,255,255,0.85); margin-top: 2px;">SCAN TO PAY — PromptPay</div>
+                </div>
+                <div style="padding: 16px; text-align: center;">
+                  <img src="assets/promptpay-slip.png" alt="PromptPay QR Code — Krungthai" style="width: 100%; max-width: 220px; border-radius: 8px; border: 1px solid #F1F5F9; display: block; margin: 0 auto 12px;">
+                  <div style="font-size: 0.72rem; color: var(--color-text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">ชื่อบัญชี</div>
+                  <div style="font-size: 0.85rem; font-weight: 900; color: #111827; margin-bottom: 10px;">นายนิวัฒน์พันธ์ เกิดรื่น</div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; background: #F9FAFB; border-radius: 6px; padding: 8px 12px; margin-bottom: 6px;">
+                    <span style="font-size: 0.72rem; color: var(--color-text-muted); font-weight: 700;">ค่าสมัคร / ทีม</span>
+                    <span style="font-size: 1rem; font-weight: 900; color: var(--color-brand);">300 THB</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; background: #F0FDF4; border-radius: 6px; padding: 6px 12px; margin-bottom: 6px;">
+                    <span style="font-size: 0.72rem; color: #166534; font-weight: 700;">ตัวสำรอง (Substitutes)</span>
+                    <span style="font-size: 0.85rem; font-weight: 900; color: #16A34A;">✓ ฟรี</span>
+                  </div>
+                  <p style="font-size: 0.68rem; color: var(--color-text-muted); margin-top: 6px; line-height: 1.5;">
+                    * กรุณาโอนและแนบสลิปยืนยันการชำระเงิน
+                  </p>
+                </div>
+              </div>
+
+              <div class="notice-dark-card">
+                <h4>REGISTRATION NOTICE</h4>
+                <p>
+                  ทีมที่ลงทะเบียนจะได้รับสถานะ PENDING จนกว่าผู้จัดการแข่งขันจะตรวจสอบและอนุมัติข้อมูล
+                </p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Registration Success Modal with Server Owner Code -->
+      <div id="reg-success-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9999; overflow-y: auto; padding: 40px 20px;">
+        <div style="background: #fff; max-width: 540px; margin: 60px auto 0; border-radius: var(--radius-md); padding: 36px; text-align: center; position: relative; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);">
+          <div style="width: 70px; height: 70px; background: #DCFCE7; color: #16A34A; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; margin: 0 auto 16px;">✓</div>
+          <h2 style="font-size: 1.6rem; font-weight: 900; margin-bottom: 8px;">ลงทะเบียนทีมสำเร็จ!</h2>
+          <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-bottom: 24px;">
+            ทีมของคุณได้รับการบันทึกเข้าสู่ระบบแล้ว กรุณาจดจำรหัสผ่านนี้ไว้สำหรับใช้ใน <strong>SERVER OWNER LOGIN</strong>
+          </p>
+          
+          <div style="background: #F9FAFB; border: 2px dashed #E5E7EB; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+            <div style="font-size: 0.75rem; font-weight: 800; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 4px;">SERVER NAME</div>
+            <div id="reg-success-server" style="font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 14px; color: #111827;">SERVER NAME</div>
+            
+            <div style="font-size: 0.75rem; font-weight: 800; color: var(--color-brand); text-transform: uppercase; margin-bottom: 4px;">👑 SERVER OWNER VERIFICATION CODE</div>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 6px;">
+              <code id="reg-success-code" style="font-size: 1.4rem; font-weight: 900; letter-spacing: 0.15em; color: #111827; background: #fff; padding: 8px 18px; border-radius: 6px; border: 1px solid #D1D5DB;">GAKU-XXXX</code>
+              <button type="button" id="reg-copy-code-btn" class="btn btn-outline" style="padding: 8px 14px; font-size: 0.75rem; cursor: pointer;">📋 คัดลอก</button>
+            </div>
+            <div id="reg-copy-success-msg" style="display: none; color: #16A34A; font-size: 0.75rem; font-weight: 800; margin-top: 8px;">✓ คัดลอกรหัสเรียบร้อยแล้ว!</div>
+          </div>
+
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <button type="button" id="reg-go-owner-btn" class="btn btn-primary" style="flex: 1; padding: 12px 20px; min-width: 220px; cursor: pointer;">👑 เข้าสู่ระบบ SERVER OWNER</button>
+            <button type="button" onclick="document.getElementById('reg-success-modal').style.display='none'" class="btn btn-outline" style="padding: 12px 18px; cursor: pointer;">ปิดหน้าต่าง</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: ADMIN PANEL
+         ========================================================================== -->
+    <section id="view-admin" class="view-section">
+      <!-- Admin Login -->
+      <div id="admin-login-screen" class="directory-hero" style="min-height: 100vh; display: flex; align-items: center;">
+        <div class="container" style="max-width: 480px; margin: 0 auto; padding: 60px 24px;">
+          <div style="text-align: center; margin-bottom: 40px;">
+            <div style="width: 72px; height: 72px; background: var(--color-brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem;">🔐</div>
+            <span class="section-tag">ADMIN</span>
+            <h1 class="section-title" style="font-size: 2rem;">ADMIN PANEL</h1>
+            <p class="section-subtitle">กรุณาใส่รหัสผ่านเพื่อเข้าสู่ระบบจัดการ</p>
+          </div>
+          <div class="reg-form-section">
+            <div class="form-group">
+              <label class="form-label">ADMIN PASSWORD</label>
+              <input type="password" id="admin-password-input" class="form-input" placeholder="Enter admin password" style="font-size: 1.1rem; letter-spacing: 0.2em; text-align: center;">
+            </div>
+            <div id="admin-login-error" style="display: none; background: #FEE2E2; color: #B91C1C; padding: 10px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; margin-bottom: 12px;">❌ รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่</div>
+            <button id="admin-login-btn" class="btn btn-primary" style="width: 100%; padding: 14px;">ENTER ADMIN PANEL</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Dashboard (shown after login) -->
+      <div id="admin-dashboard" style="display: none;">
+        <div class="directory-hero">
+          <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+              <div>
+                <span class="section-tag">ADMIN CONTROL CENTER</span>
+                <h1 class="section-title">ADMINISTRATION</h1>
+                <p class="section-subtitle">ศูนย์กลางควบคุมข้อมูลต้นทาง: Servers, Matches, Players, Audit Log</p>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                <button id="admin-reset-all-btn" class="btn" style="background: #DC2626; color: #fff; font-size: 0.8rem; font-weight: 800; border: none; padding: 8px 16px; cursor: pointer;">🗑️ เคลียร์ข้อมูลทั้งหมด (RESET ALL)</button>
+                <a href="#match-control" class="btn btn-primary">⚔️ MATCH CONTROL</a>
+                <button id="admin-logout-btn" class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.4);">LOG OUT</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container" style="padding-top: 32px; padding-bottom: 80px;">
+          <!-- Admin Tabs -->
+          <div class="admin-tab-bar">
+            <button class="admin-tab active" data-tab="dashboard">📊 DASHBOARD</button>
+            <button class="admin-tab" data-tab="servers">🛡️ SERVERS</button>
+            <button class="admin-tab" data-tab="players">👤 PLAYERS</button>
+            <button class="admin-tab" data-tab="matches">⚔️ MATCHES</button>
+            <button class="admin-tab" data-tab="registrations">📝 REGISTRATIONS</button>
+            <button class="admin-tab" data-tab="audit">📜 AUDIT LOG</button>
+          </div>
+
+          <!-- TAB 1: DASHBOARD -->
+          <div id="admin-panel-dashboard" class="admin-tab-content active">
+            <div class="admin-stat-grid">
+              <div class="admin-stat-card">
+                <div class="stat-label">TOTAL SERVERS</div>
+                <div class="stat-val" id="admin-stat-servers">0</div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-label">TOTAL PLAYERS</div>
+                <div class="stat-val" id="admin-stat-players">0</div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-label">LIVE MATCHES</div>
+                <div class="stat-val" id="admin-stat-live" style="color: #DC2626;">0</div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-label">COMPLETED MATCHES</div>
+                <div class="stat-val" id="admin-stat-completed" style="color: #059669;">0</div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; margin-top: 24px;">
+              <div class="admin-stat-card">
+                <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 16px;">⚔️ ACTIVE & UPCOMING MATCHES</h3>
+                <div id="admin-dash-matches-preview">
+                  <!-- Dynamic preview of matches -->
+                </div>
+              </div>
+              <div class="admin-stat-card">
+                <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 16px;">📜 RECENT AUDIT LOGS</h3>
+                <div id="admin-dash-logs-preview" style="font-size: 0.85rem;">
+                  <!-- Dynamic recent logs -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: SERVERS -->
+          <div id="admin-panel-servers" class="admin-tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+              <div>
+                <span class="section-tag">SERVER MANAGEMENT</span>
+                <h2 class="section-title" style="margin-bottom: 0;">ALL REGISTERED SERVERS</h2>
+              </div>
+              <button id="admin-add-team-btn" class="btn btn-primary">+ ADD SERVER</button>
+            </div>
+            <div class="table-wrap" id="admin-teams-wrap">
+              <!-- Populated via app.js -->
+            </div>
+          </div>
+
+          <!-- TAB 3: PLAYERS -->
+          <div id="admin-panel-players" class="admin-tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+              <div>
+                <span class="section-tag">PLAYER ROSTER DIRECTORY</span>
+                <h2 class="section-title" style="margin-bottom: 0;">ALL TOURNAMENT PLAYERS</h2>
+              </div>
+              <input type="text" id="admin-players-search" class="form-input" placeholder="🔍 ค้นหาชื่อผู้เล่น..." style="max-width: 280px;">
+            </div>
+            <div class="table-wrap" id="admin-players-wrap">
+              <!-- Populated via app.js -->
+            </div>
+          </div>
+
+          <!-- TAB 4: MATCHES -->
+          <div id="admin-panel-matches" class="admin-tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+              <div>
+                <span class="section-tag">MATCH SCHEDULE & RESULTS</span>
+                <h2 class="section-title" style="margin-bottom: 0;">MATCHES MANAGEMENT</h2>
+              </div>
+              <button id="admin-create-match-btn" class="btn btn-primary">+ CREATE MATCH</button>
+            </div>
+            <div id="admin-matches-list" class="match-manage-grid">
+              <!-- Populated via app.js -->
+            </div>
+          </div>
+
+          <!-- TAB 5: REGISTRATIONS -->
+          <div id="admin-panel-registrations" class="admin-tab-content">
+            <div style="margin-bottom: 24px;">
+              <span class="section-tag">PENDING APPLICATIONS</span>
+              <h2 class="section-title" style="margin-bottom: 0;">NEW TEAM REGISTRATIONS</h2>
+            </div>
+            <div class="table-wrap" id="admin-registrations-wrap">
+              <!-- Populated via app.js -->
+            </div>
+          </div>
+
+          <!-- TAB 6: AUDIT LOG -->
+          <div id="admin-panel-audit" class="admin-tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+              <div>
+                <span class="section-tag">SECURITY & AUDIT TRAIL</span>
+                <h2 class="section-title" style="margin-bottom: 0;">SYSTEM AUDIT LOG</h2>
+              </div>
+              <button id="admin-clear-logs-btn" class="btn btn-outline" style="font-size: 0.75rem;">CLEAR AUDIT LOGS</button>
+            </div>
+            <div class="table-wrap">
+              <table class="audit-log-table">
+                <thead>
+                  <tr>
+                    <th style="width: 140px;">TIME</th>
+                    <th style="width: 140px;">ACTOR</th>
+                    <th style="width: 180px;">ACTION</th>
+                    <th>DETAILS</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-audit-log-tbody">
+                  <!-- Populated via app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Admin Edit Team Modal -->
+      <div id="admin-edit-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; overflow-y: auto; padding: 40px 20px;">
+        <div style="background: #fff; max-width: 640px; margin: 0 auto; border-radius: var(--radius-md); padding: 36px; position: relative;">
+          <button onclick="document.getElementById('admin-edit-modal').style.display='none'" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">✕</button>
+          <h3 style="font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 24px;" id="admin-modal-title">EDIT SERVER</h3>
+          <input type="hidden" id="admin-edit-team-id">
+          <div class="form-grid-2" style="margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">SERVER NAME</label>
+              <input type="text" id="admin-edit-name" class="form-input" placeholder="Server name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">OWNER / CAPTAIN</label>
+              <input type="text" id="admin-edit-owner" class="form-input" placeholder="Owner / Captain">
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">STATUS</label>
+            <select id="admin-edit-status" class="form-input">
+              <option value="verified">VERIFIED</option>
+              <option value="pending">PENDING</option>
+              <option value="eliminated">ELIMINATED</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">STARTING ROSTER (15 players, 1 per line)</label>
+            <textarea id="admin-edit-starters" class="form-input" rows="8" placeholder="Player 1&#10;Player 2&#10;..." style="resize: vertical; font-family: inherit;"></textarea>
+          </div>
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label class="form-label">SUBSTITUTES (up to 5, 1 per line)</label>
+            <textarea id="admin-edit-subs" class="form-input" rows="4" placeholder="Sub 1&#10;Sub 2&#10;..." style="resize: vertical; font-family: inherit;"></textarea>
+          </div>
+          <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button onclick="document.getElementById('admin-edit-modal').style.display='none'" class="btn btn-outline">CANCEL</button>
+            <button id="admin-save-btn" class="btn btn-primary">SAVE CHANGES</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Create Match Modal -->
+      <div id="admin-create-match-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; overflow-y: auto; padding: 40px 20px;">
+        <div style="background: #fff; max-width: 520px; margin: 0 auto; border-radius: var(--radius-md); padding: 36px; position: relative;">
+          <button onclick="document.getElementById('admin-create-match-modal').style.display='none'" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">✕</button>
+          <h3 style="font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 8px;">CREATE NEW MATCH</h3>
+          <p style="color: var(--color-text-secondary); font-size: 0.85rem; margin-bottom: 24px;">กำหนดคู่แข่งขันระหว่าง 2 เซิร์ฟเวอร์ในระบบ</p>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">MATCH ID</label>
+            <input type="text" id="admin-new-match-id" class="form-input" placeholder="MATCH #001">
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">SERVER A (ทีมเจ้าบ้าน)</label>
+            <select id="admin-new-match-team-a" class="form-input">
+              <option value="">-- เลือกเซิร์ฟเวอร์ A --</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label class="form-label">SERVER B (ทีมเยือน)</label>
+            <select id="admin-new-match-team-b" class="form-input">
+              <option value="">-- เลือกเซิร์ฟเวอร์ B --</option>
+            </select>
+          </div>
+          <div style="display: flex; gap: 12px; justify-content: flex-end;">
+            <button onclick="document.getElementById('admin-create-match-modal').style.display='none'" class="btn btn-outline">CANCEL</button>
+            <button id="admin-confirm-create-match-btn" class="btn btn-primary">CREATE MATCH</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         VIEW: MATCH CONTROL (Referee Panel)
+         ========================================================================== -->
+    <section id="view-match-control" class="view-section">
+
+      <!-- Referee Login Screen -->
+      <div id="referee-login" class="directory-hero" style="min-height: 100vh; display: flex; align-items: center;">
+        <div class="container" style="max-width: 480px; margin: 0 auto; padding: 60px 24px;">
+          <div style="text-align: center; margin-bottom: 40px;">
+            <div style="width: 72px; height: 72px; background: var(--color-brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem;">⚔️</div>
+            <span class="section-tag">MATCH CONTROL</span>
+            <h1 class="section-title" style="font-size: 2rem;">REFEREE LOGIN</h1>
+            <p class="section-subtitle">กรุณาใส่รหัสผ่านเพื่อเข้าสู่ระบบควบคุมแมตช์</p>
+          </div>
+          <form id="referee-login-form" class="reg-form-section">
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label class="form-label">REFEREE NAME</label>
+              <input type="text" id="referee-name" class="form-input" placeholder="ชื่อกรรมการ (ไม่บังคับ)">
+            </div>
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label class="form-label">PASSWORD</label>
+              <input type="password" id="referee-pass" class="form-input" placeholder="รหัสผ่าน" style="letter-spacing: 0.2em; text-align: center;">
+            </div>
+            <div id="referee-login-error" style="display:none; background: #FEE2E2; color: #B91C1C; padding: 10px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; margin-bottom: 12px;">❌ รหัสผ่านไม่ถูกต้อง</div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">ENTER MATCH CONTROL</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Match Control Dashboard -->
+      <div id="match-control-dashboard" style="display:none;">
+        <div class="directory-hero">
+          <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+              <div>
+                <span class="section-tag">REFEREE PANEL</span>
+                <h1 class="section-title">MATCH CONTROL</h1>
+                <p class="section-subtitle" id="referee-welcome">ยินดีต้อนรับ กรรมการ</p>
+              </div>
+              <button id="referee-logout-btn" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">LOG OUT</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="container" style="padding: 40px 24px 80px;">
+
+          <!-- Select Match -->
+          <div style="margin-bottom: 32px; background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+              <div>
+                <span class="section-tag">MATCH SETUP</span>
+                <h2 class="section-title" style="margin-bottom: 0;">SELECT OR LOAD MATCH</h2>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <select id="mc-existing-match-select" class="form-input" style="max-width: 260px;">
+                  <option value="">-- โหลดแมตช์จากระบบ --</option>
+                </select>
+                <button id="mc-load-match-btn" class="btn btn-outline">LOAD MATCH</button>
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="gap: 16px;">
+              <div class="form-group">
+                <label class="form-label">SERVER A (ทีมเจ้าบ้าน)</label>
+                <select id="mc-team-a" class="form-input">
+                  <option value="">-- เลือกทีม --</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">SERVER B (ทีมเยือน)</label>
+                <select id="mc-team-b" class="form-input">
+                  <option value="">-- เลือกทีม --</option>
+                </select>
+              </div>
+            </div>
+            <button id="mc-start-match-btn" class="btn btn-primary" style="margin-top: 16px;">START / RESTART MATCH CONTROL</button>
+          </div>
+
+          <!-- Scoreboard -->
+          <div id="mc-scoreboard" style="display:none;">
+
+            <!-- Match Lobby Bar & Countdown & Pause/Resume -->
+            <div style="background: #ffffff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 18px 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                <div>
+                  <span class="section-tag">MATCH LOBBY & OPERATIONS</span>
+                  <div style="display: flex; gap: 12px; align-items: center; margin-top: 6px; flex-wrap: wrap;">
+                    <span id="mc-ready-a" class="badge-pill badge-verified">✓ SERVER A: READY</span>
+                    <span id="mc-ready-b" class="badge-pill badge-verified">✓ SERVER B: READY</span>
+                    <span id="mc-ready-ref" class="badge-pill badge-verified">✓ REFEREE: READY</span>
+                    <span id="mc-match-paused-tag" class="badge-pill badge-pending" style="display:none; background:#FEF3C7; color:#B45309; border-color:#FCD34D;">⏸️ MATCH PAUSED</span>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <button id="mc-trigger-countdown-btn" class="btn btn-outline" style="font-size: 0.8rem; padding: 8px 16px; border-color: var(--color-brand); color: var(--color-brand);">
+                    ⏱️ 10S COUNTDOWN
+                  </button>
+                  <button id="mc-toggle-pause-btn" class="btn btn-outline" style="font-size: 0.8rem; padding: 8px 16px;">
+                    ⏸️ PAUSE MATCH
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Score Display -->
+            <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; background: #0a0a0a; border-radius: 12px; padding: 32px 24px; margin: 16px 0 24px; color: #fff;">
+              <div style="text-align: center;">
+                <div style="font-size: 0.75rem; letter-spacing: 0.15em; color: #aaa; margin-bottom: 8px;">SERVER A</div>
+                <div id="mc-name-a" style="font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 12px;">—</div>
+                <div id="mc-score-a" style="font-size: 4rem; font-weight: 900; color: var(--color-brand); line-height: 1;">0</div>
+                <div style="margin-top: 12px; font-size: 0.85rem; font-weight: 800; color: #22c55e;" id="mc-alive-a-badge">15 ALIVE</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: 900; color: #555;">VS</div>
+                <div id="mc-current-round-tag" style="font-size: 0.75rem; font-weight: 800; color: #aaa; margin-top: 6px;">ROUND 1: 1V1 SURVIVAL</div>
+                <div style="font-size: 0.68rem; color: #888; margin-top: 2px;">BEST OF 3 FORMAT</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 0.75rem; letter-spacing: 0.15em; color: #aaa; margin-bottom: 8px;">SERVER B</div>
+                <div id="mc-name-b" style="font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 12px;">—</div>
+                <div id="mc-score-b" style="font-size: 4rem; font-weight: 900; color: #e8e8e8; line-height: 1;">0</div>
+                <div style="margin-top: 12px; font-size: 0.85rem; font-weight: 800; color: #22c55e;" id="mc-alive-b-badge">15 ALIVE</div>
+              </div>
+            </div>
+
+            <!-- Match Status Badge -->
+            <div id="mc-match-status" style="text-align:center; margin-bottom: 24px;">
+              <span id="mc-status-badge" style="display:inline-block; background: var(--color-brand); color:#fff; padding: 8px 24px; border-radius: 20px; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.1em;">ROUND 1 — 1V1 SURVIVAL IN PROGRESS</span>
+            </div>
+
+            <!-- Absolute Win Banner (if 2-0, skips Round 3) -->
+            <div id="mc-absolute-win-banner" style="display: none; background: #ECFDF5; border: 2px solid #10B981; border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; text-align: center;">
+              <div style="font-weight: 900; color: #047857; font-size: 1.1rem; text-transform: uppercase;">⚡ ABSOLUTE WIN 2-0 DETECTED!</div>
+              <p style="color: #065F46; font-size: 0.85rem; margin: 4px 0 0;">
+                ทีมชนะ 2 ใน 3 รอบติดต่อกันอย่างสมบูรณ์แบบ (2-0) ตามกติกาไม่ต้องเล่นรอบ 3 (15v15) สามารถกดยืนยันผลการแข่งขันได้ทันที
+              </p>
+            </div>
+
+            <!-- Recommendation Alert when a team reaches 0 alive -->
+            <div id="mc-round-suggest-banner" style="display: none; background: #FEF3C7; border: 2px solid #F59E0B; border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; text-align: center;">
+              <div style="font-weight: 800; color: #B45309; font-size: 0.95rem;" id="mc-suggest-text">⚠️ ทีม SERVER B เหลือ 0 ALIVE! ระบบเสนอผู้ชนะรอบ: SERVER A</div>
+              <button id="mc-apply-suggest-btn" class="btn btn-primary" style="margin-top: 10px; padding: 8px 20px; font-size: 0.8rem;">CONFIRM ROUND WINNER</button>
+            </div>
+
+            <!-- Live Rosters (15 Starters each) with Eliminate / Revive -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+              <!-- Server A Roster -->
+              <div style="background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                  <h4 style="font-size: 0.95rem; font-weight: 900; text-transform: uppercase;" id="mc-roster-title-a">SERVER A ROSTER</h4>
+                  <button id="mc-reset-roster-a" class="btn btn-outline" style="font-size: 0.7rem; padding: 4px 10px;">RESET ALL ALIVE</button>
+                </div>
+                <div id="mc-roster-players-a">
+                  <!-- Dynamic roster chips -->
+                </div>
+              </div>
+
+              <!-- Server B Roster -->
+              <div style="background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                  <h4 style="font-size: 0.95rem; font-weight: 900; text-transform: uppercase;" id="mc-roster-title-b">SERVER B ROSTER</h4>
+                  <button id="mc-reset-roster-b" class="btn btn-outline" style="font-size: 0.7rem; padding: 4px 10px;">RESET ALL ALIVE</button>
+                </div>
+                <div id="mc-roster-players-b">
+                  <!-- Dynamic roster chips -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Round Controls -->
+            <div id="mc-rounds-container">
+              <!-- Round 1 -->
+              <div id="mc-round1" class="round-card" style="background:#f9f9f9; border:1px solid #e5e5e5; border-radius:10px; padding:24px; margin-bottom:16px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                  <h3 style="font-size:1rem; font-weight:900; text-transform:uppercase; margin:0;">ROUND 1</h3>
+                  <span id="mc-r1-status" style="font-size:0.75rem; font-weight:700; color:#888;">IN PROGRESS</span>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <button class="btn btn-primary mc-win-btn" data-round="1" data-winner="a" style="padding:12px;">⚔️ SERVER A WINS R1</button>
+                  <button class="btn btn-outline mc-win-btn" data-round="1" data-winner="b" style="padding:12px;">SERVER B WINS R1 ⚔️</button>
+                </div>
+              </div>
+              <!-- Round 2 -->
+              <div id="mc-round2" class="round-card" style="background:#f9f9f9; border:1px solid #e5e5e5; border-radius:10px; padding:24px; margin-bottom:16px; opacity:0.4; pointer-events:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                  <h3 style="font-size:1rem; font-weight:900; text-transform:uppercase; margin:0;">ROUND 2</h3>
+                  <span id="mc-r2-status" style="font-size:0.75rem; font-weight:700; color:#888;">WAITING</span>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <button class="btn btn-primary mc-win-btn" data-round="2" data-winner="a" style="padding:12px;">⚔️ SERVER A WINS R2</button>
+                  <button class="btn btn-outline mc-win-btn" data-round="2" data-winner="b" style="padding:12px;">SERVER B WINS R2 ⚔️</button>
+                </div>
+              </div>
+              <!-- Round 3 -->
+              <div id="mc-round3" class="round-card" style="background:#f9f9f9; border:1px solid #e5e5e5; border-radius:10px; padding:24px; margin-bottom:16px; opacity:0.4; pointer-events:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                  <h3 style="font-size:1rem; font-weight:900; text-transform:uppercase; margin:0;">ROUND 3 — 15 VS 15</h3>
+                  <span id="mc-r3-status" style="font-size:0.75rem; font-weight:700; color:#888;">NOT PLAYED</span>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                  <button class="btn btn-primary mc-win-btn" data-round="3" data-winner="a" style="padding:12px;">⚔️ SERVER A WINS R3</button>
+                  <button class="btn btn-outline mc-win-btn" data-round="3" data-winner="b" style="padding:12px;">SERVER B WINS R3 ⚔️</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Match Result Banner & CONFIRM RESULT -->
+            <div id="mc-result-banner" style="display:none; text-align:center; padding: 40px 24px; background: #0a0a0a; border-radius: 12px; margin-top: 24px; color:#fff; box-shadow: var(--shadow-lg);">
+              <div id="mc-result-type" style="font-size:0.85rem; letter-spacing:0.2em; color:#aaa; margin-bottom:8px;">WINNER DECIDED</div>
+              <div id="mc-result-winner" style="font-size:2.8rem; font-weight:900; color:var(--color-brand); text-transform:uppercase; margin-bottom:12px;">—</div>
+              <p style="color: #888; font-size: 0.85rem; margin-bottom: 24px;">กดยืนยันผลการแข่งขัน เพื่อบันทึกผลเข้าสู่ระบบและอัปเดต Ranking อัตโนมัติ</p>
+              <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                <button id="mc-confirm-result-btn" class="btn btn-primary" style="padding:14px 40px; font-size: 1rem; font-weight: 900; letter-spacing: 0.08em; background: #16a34a; border-color: #16a34a;">✅ CONFIRM RESULT & UPDATE RANKING</button>
+                <button id="mc-new-match-btn" class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.4); padding: 14px 24px;">RESET / NEW MATCH</button>
+              </div>
+            </div>
+
+            <!-- Match Audit Log -->
+            <div style="margin-top: 36px;">
+              <span class="section-tag">LIVE AUDIT LOG</span>
+              <div id="mc-log" style="background:#ffffff; border:1px solid #e5e5e5; border-radius:10px; padding:16px; margin-top:12px; max-height:220px; overflow-y:auto; font-size:0.85rem; color:#333; font-family:monospace;">
+                <div>— Match audit log will appear here —</div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Global Match Countdown Overlay -->
+    <div id="mc-countdown-overlay" class="countdown-overlay" style="display:none;">
+      <div style="font-size: 1.2rem; font-weight:800; letter-spacing:0.2em; color:#aaa; margin-bottom:12px; text-transform:uppercase;">
+        ⚔️ MATCH STARTING IN
+      </div>
+      <div id="mc-countdown-number" class="countdown-number">10</div>
+      <div style="margin-top: 24px; display: flex; gap: 12px;">
+        <button id="mc-cancel-countdown-btn" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4); font-size: 0.85rem; padding: 10px 24px;">
+          CANCEL COUNTDOWN
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Site Footer matching mockups -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>KING OF GAKURAN</h3>
+          <p>15 VS 15 TOURNAMENT</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>NAVIGATION</h4>
+          <ul class="footer-links">
+            <li><a href="#tournament">TOURNAMENT</a></li>
+            <li><a href="#teams">TEAMS</a></li>
+            <li><a href="#matches">MATCHES</a></li>
+            <li><a href="#ranking">RANKING</a></li>
+            <li><a href="#rules">RULES</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>COMMUNITY</h4>
+          <ul class="footer-links">
+            <li><a href="https://discord.gg/PnsPe27xsV" target="_blank" rel="noopener">DISCORD</a></li>
+            <li><a href="https://x.com" target="_blank" rel="noopener">X</a></li>
+            <li><a href="https://youtube.com/@zun_nqy?si=1sogPDAGHJRD6YN4" target="_blank" rel="noopener">YOUTUBE</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© 2026 KING OF GAKURAN TOURNAMENT</span>
+      <span>PUBLIC TOURNAMENT APPLICATION SYSTEM</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
